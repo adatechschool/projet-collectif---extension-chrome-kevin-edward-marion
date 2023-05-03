@@ -11,14 +11,16 @@
         "http://*/*"
     ],
     "background": {
-        "scripts": [
-            "service-worker.js"
-        ]
+        "service_worker": "service-worker.js"
     },
     "content_scripts": [
         {
             "js": [
-                "scripts/content_scripts.js"
+                "scripts/content-script.js"
+            ],
+            "matches": [   
+           "https://*/*",
+            "http://*/*"
             ]
         }
     ]
