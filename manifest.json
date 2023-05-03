@@ -1,5 +1,25 @@
 {
     "manifest_version": 3,
     "name": "xxx",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "permissions": [
+        "storage",
+        "webRequest",
+        "webRequestBlocking",
+        "contextMenus",
+        "https://*/*",
+        "http://*/*"
+    ],
+    "background": {
+        "scripts": [
+            "service-worker.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/content_scripts.js"
+            ]
+        }
+    ]
 }
