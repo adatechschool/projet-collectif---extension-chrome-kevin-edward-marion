@@ -1,3 +1,5 @@
+
+
 // Parcours les éléments de la page HTML
 function trouverMot(listeMots, parent = document.body) {
   // Exclure les éléments avec le tag "a" et leurs enfants
