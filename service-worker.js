@@ -19,6 +19,5 @@ self.addEventListener('message', event => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'getData') {
     sendResponse({ message: 'Data received.', data: politiciens });
-    
   }
 });

@@ -5,10 +5,7 @@
     "permissions": [
         "storage",
         "webRequest",
-        "contextMenus",
-        "tabs",
-        "activeTab",
-        "scripting"
+        "contextMenus"
     ],
     "background": {
         "service_worker": "service-worker.js"

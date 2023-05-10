@@ -1,43 +1,39 @@
 
-
 chrome.runtime.sendMessage({ type: 'getData' },  response => {
-  console.log(response);
+  const data = response.data
+  console.log(data);
   let listeNoms = [];
-  let listePrenoms = [];
-  for (let politicien of response.data) {
+  for (let politicien of data) {
     listeNoms.push(politicien["nom"]);
-    listePrenoms.push(politicien["prénom"]);
   }
-  console.log(listeNoms);
+
+  let text = document.createElement('div');
+  text.style.position = 'absolute';
+  text.style.background = 'black';
+  text.style.padding = '10px';
+  text.style.borderRadius = '15px';
+  text.style.display = 'none';
+  document.body.appendChild(text);
+  text.style.color= "white";
 
   setTimeout(() => {
     trouverMot(listeNoms);
     let poli = document.querySelectorAll('.politicien');
-    let text = document.createElement('div');
-    text.style.position = 'absolute';
-    text.style.background = 'black';
-    text.style.padding = '10px';
-    text.style.borderRadius = '15px';
-    text.style.display = 'none';
-    document.body.appendChild(text);
-    text.innerText = "Bonjour";
-    text.style.color= "white";
-  
+    
     poli.forEach(nom => {
       nom.addEventListener("mouseenter", (e) => {
+        let mot = e.target.textContent;
+        text.innerText = trouveFonction(mot, data);
         text.style.display = 'block';
-        positionnerTexte(text, e.clientX, e.clientY);
       });
       nom.addEventListener("mousemove", (e) => {
-        positionnerTexte(text, e.clientX, e.clientY);
+        positionnerTexte(text, e.clientX + window.scrollX, e.clientY + window.scrollY);
       });
       nom.addEventListener("mouseleave", (e) => {
         text.style.display = 'none';
       });
     })
   }, 2000);
-  
-  
 });
 
 function positionnerTexte(element, x, y) {
@@ -82,4 +78,9 @@ function surlignage(listeMots, enfant, parent) {
     nouvelEnfant.innerHTML = nouveauContenu;
     parent.replaceChild(nouvelEnfant, enfant);
   }
+}
+
+function trouveFonction(nom, data) {
+  const detail = data.find( donnée => donnée.nom === nom)
+  return detail["fonction"]
 }
