@@ -7,6 +7,12 @@
         "webRequest",
         "contextMenus"
     ],
+    "icons": {
+        "16": "icons/bot_16.png",
+        "32": "icons/bot_32.png",
+        "48": "icons/bot_48.png",
+        "128": "icons/bot_128.png"
+    },
     "background": {
         "service_worker": "service-worker.js"
     },
